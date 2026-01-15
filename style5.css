@@ -1,0 +1,291 @@
+:root {
+    --bg: #f0f4ff;
+    --text: #000;
+    --nav-bg: linear-gradient(135deg, rgb(0, 101, 168), rgb(51, 74, 88));
+    --tab-bg: #ffffff;
+    --card-bg: #ffffff;
+    --card-text: #333333;
+    --tab-text: #12678f;
+    --text-logo-h1: #dbe0ec;
+    --text-logo-p: #dfe7f3;
+    --text-nav: #dce2eb;
+    --text-nav-hover: #2563eb;
+    --nav-shadow: rgba(0,0,0,0.08);
+}
+
+body:has(#theme-toggle:checked) {
+    --bg: #0f172a;
+    --text: #e5e7eb;
+    --nav-bg: linear-gradient(135deg, #1e3a5f, #2d3748);
+    --tab-bg: #1e293b;
+    --card-bg: #334155;
+    --card-text: #e5e7eb;
+    --tab-text: #60a5fa;
+    --text-logo-h1: #dbe0ec;
+    --text-logo-p: #dfe7f3;
+    --text-nav: #e2e8f0;
+    --text-nav-hover: #60a5fa;
+    --nav-shadow: rgba(0,0,0,0.3);
+}
+
+.theme-checkbox {
+    display: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav {
+    background: var(--nav-bg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 40px;
+    box-shadow: 0 3px 10px var(--nav-shadow);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-circle {
+    background: var(--nav-bg);
+    color: white;
+    font-size: 1.6rem;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s;
+    overflow: hidden;
+}
+
+.logo-circle:hover {
+    transform: rotate(10deg) scale(1.1);
+}
+
+.logo-text h1 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: var(--text-logo-h1);
+}
+
+.logo-text p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-logo-p);
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: var(--text-nav);
+    margin: 0 10px;
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.menu a:hover {
+  background-color: rgb(255, 255, 255);
+  color: white,var(--text-nav-hover);
+}
+
+
+.menu .active {
+    color: #cbd4e7;
+    font-weight: 600;
+}
+
+.theme-switch {
+    cursor: pointer;
+    width: 50px;
+    height: 26px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    transition: background 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.theme-icon {
+    display: none;
+}
+
+.theme-switch::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    left: 3px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+body:has(#theme-toggle:checked) .theme-switch::after {
+    transform: translateX(24px);
+}
+
+.tabs {
+    background: var(--nav-bg);
+}
+
+.tab-buttons {
+    background: var(--nav-bg);
+    padding: 10px;
+    text-align: center;
+}
+
+.tabs input[type="radio"] {
+    display: none;
+}
+
+.tabs label {
+    display: inline-block;
+    padding: 15px 25px;
+    background: rgba(255, 255, 255, 0.2);
+    color: rgb(255, 255, 255);
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 5px 5px 5px 5px;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.tabs label:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+#tab1:checked ~ .tab-buttons label[for="tab1"],
+#tab2:checked ~ .tab-buttons label[for="tab2"],
+#tab3:checked ~ .tab-buttons label[for="tab3"],
+#tab4:checked ~ .tab-buttons label[for="tab4"] {
+    background: rgba(255, 255, 255, 0.9);
+    color: #12678f;
+}
+
+.tab-section {
+    margin: 0px 20px;
+    align-items: center;
+    background: var(--tab-bg);
+    padding: 30px;
+    border-radius: 10px 10px 10px 10px;
+    transition: background 0.3s ease;
+}
+
+.tab-section h2,
+.tab-section p {
+    color: var(--tab-text);
+    transition: color 0.3s ease;
+}
+
+.tab-content {
+    display: none;
+}
+
+#tab1:checked ~ .tab-section #content1,
+#tab2:checked ~ .tab-section #content2,
+#tab3:checked ~ .tab-section #content3,
+#tab4:checked ~ .tab-section #content4 {
+    display: block;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 20px;
+    padding-bottom: 54px;
+    gap: 15px;
+    background-color: var(--tab-bg);
+    transition: background-color 0.3s ease;
+}
+
+.card-wrapper {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.card {
+    width: 260px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500px;
+    margin: 50px;
+    background-color: var(--card-bg);
+    color: white;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+.card-text {
+    padding: 20px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--card-text);
+    transition: color 0.3s ease;
+}
+
+.card img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+#tab1:checked ~ .card-container .card1 {
+    display: flex;
+}
+
+#tab2:checked ~ .card-container .card2 {
+    display: flex;
+}
+
+#tab3:checked ~ .card-container .card3 {
+    display: flex;
+}
+
+#tab4:checked ~ .card-container .card4 {
+    display: flex;
+}
